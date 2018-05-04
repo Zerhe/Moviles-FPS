@@ -16,9 +16,9 @@ public class MovEnemy : MonoBehaviour {
 	
 	void Update ()
     {
-        if (transform.position.x > playerTransform.position.x +5)
+        if (transform.position.x > playerTransform.position.x)
             positionToMove.x = -1;
-        else if (transform.position.x < playerTransform.position.x +5)
+        else if (transform.position.x < playerTransform.position.x)
             positionToMove.x = 1;
         if (transform.position.z > playerTransform.position.z)
             positionToMove.z = -1;

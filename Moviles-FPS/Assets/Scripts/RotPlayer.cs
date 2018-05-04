@@ -7,22 +7,31 @@ public class RotPlayer : MonoBehaviour {
     private string rotXButton;
     private string rotYButton;
     [SerializeField]
-    private float velRot;
+    private float sensitivity;
+    [SerializeField]
+    private float smoothing;
+    Vector2 mouseLook;
+    Vector2 smoothV;
+    GameObject character;
 
     void Start () {
         rotXButton = "MouseX";
         rotYButton = "MouseY";
-	}
+
+        character = this.transform.parent.gameObject;
+    }
 	
 	void Update () {
-        if (Input.GetAxis(rotXButton) > 0)
-            transform.Rotate(Vector3.up * Time.deltaTime * velRot);
-        else if (Input.GetAxis(rotXButton) < 0)
-            transform.Rotate(Vector3.down * Time.deltaTime * velRot, Space.World);
+        Vector2 md = new Vector2(Input.GetAxisRaw(rotXButton), Input.GetAxisRaw(rotYButton));
 
-        /*if (Input.GetAxis(rotYButton) > 0)
-            transform.Rotate(Vector3.left * Time.deltaTime * velRot, Space.World);
-        else if (Input.GetAxis(rotYButton) < 0)
-            transform.Rotate(Vector3.right * Time.deltaTime * velRot, Space.World);*/
+        md = Vector2.Scale(md, new Vector2(sensitivity * smoothing, sensitivity * smoothing));
+        smoothV.x = Mathf.Lerp(smoothV.x, md.x, 1f / smoothing);
+        smoothV.y = Mathf.Lerp(smoothV.y, md.y, 1f / smoothing);
+
+        mouseLook += smoothV;
+        mouseLook.y = Mathf.Clamp(mouseLook.y, -90f, 90f);
+
+        transform.localRotation = Quaternion.AngleAxis(-mouseLook.y, Vector3.right);
+        character.transform.localRotation = Quaternion.AngleAxis(mouseLook.x, character.transform.up);
     }
 }
