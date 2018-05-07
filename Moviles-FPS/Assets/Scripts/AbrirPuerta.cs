@@ -4,17 +4,41 @@ using UnityEngine;
 
 public class AbrirPuerta : MonoBehaviour {
 
-    private void OnTriggerStay(Collider other)
+    private bool abrir;
+    [SerializeField]
+    private float vel;
+
+    private void Start()
     {
-        if (other.gameObject.tag == "Player" && transform.position.y < 40)
+        abrir = false;
+    }
+    private void Update()
+    {
+        print(abrir);
+
+        if (abrir && transform.position.y < 7)
         {
-            print("asdd");
-            transform.Translate(Vector3.up * Time.deltaTime * 3);
+            transform.Translate(Vector3.up * Time.deltaTime * vel);
+
+        }
+        if (!abrir && transform.position.y > 2.48)
+        {
+            transform.Translate(Vector3.down * Time.deltaTime * vel);
+
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            abrir = true;
         }
     }
     private void OnTriggerExit(Collider other)
     {
-            transform.Translate(Vector3.down * Time.deltaTime * 5);
-
+        if (other.gameObject.tag == "Player")
+        {
+            abrir = false;
+        }
     }
 }
