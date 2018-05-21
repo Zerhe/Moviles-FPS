@@ -8,7 +8,7 @@ public class DeadEnemy : MonoBehaviour {
     {
         if (coll.gameObject.tag == "Proyectil")
         {
-
+            print("MeMori");
             gameObject.SetActive(false);
         }
     }

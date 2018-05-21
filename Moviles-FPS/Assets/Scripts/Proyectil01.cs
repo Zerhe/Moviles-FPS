@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Proyectil01 : MonoBehaviour {
+public class Proyectil01 : Proyectil {
 
     private Rigidbody rgb;
     [SerializeField]
@@ -25,12 +25,7 @@ public class Proyectil01 : MonoBehaviour {
     {
         Desactivarse();
     }
-    public void Desactivarse()
-    {
-        timer = 0;
-        gameObject.SetActive(false);
-    }
-    public void Activarse(Vector3 pos, Quaternion rot)
+    public override void Activarse(Vector3 pos, Quaternion rot)
     {
         gameObject.transform.position = pos;
         gameObject.transform.rotation = rot;
@@ -38,7 +33,12 @@ public class Proyectil01 : MonoBehaviour {
         gameObject.SetActive(true);
 
     }
-    public void AddVelocity()
+    public override void Desactivarse()
+    {
+        timer -= timer;
+        gameObject.SetActive(false);
+    }
+    public override void AddVelocity()
     {
         rgb.AddRelativeForce(Vector3.up * vel, ForceMode.VelocityChange);
     }

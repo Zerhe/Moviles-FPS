@@ -14,7 +14,6 @@ public class AbrirPuerta : MonoBehaviour {
     }
     private void Update()
     {
-        print(abrir);
 
         if (abrir && transform.position.y < 7)
         {
