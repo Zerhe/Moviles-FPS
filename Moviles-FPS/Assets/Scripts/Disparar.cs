@@ -7,7 +7,7 @@ public class Disparar : MonoBehaviour {
     [SerializeField]
     private GameObject _proyectilObj;
     private GameObject[] _proyectilesInstanciados = new GameObject[10];
-    private Proyectil01 _infoProyectil;
+    private Proyectil _infoProyectil;
     [SerializeField]
     private Transform _spawnTransform;
     private string dispararButton;
