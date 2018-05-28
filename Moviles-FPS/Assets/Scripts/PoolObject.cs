@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class PoolObject : MonoBehaviour
 {
-    private Pool pool;
+    public Pool pool;
 
     public void SetPool(Pool pool)
     {
         this.pool = pool;
     }
-
-    public void Recycle()
+    public virtual void Recycle()
     {
-        pool.Recycle(this);
+        pool.AddToPool(this);
     }
 }

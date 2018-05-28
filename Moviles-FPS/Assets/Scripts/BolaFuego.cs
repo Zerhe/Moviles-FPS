@@ -2,19 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Proyectil01 : Proyectil {
+public class BolaFuego : Proyectil {
 
-    private Rigidbody rgb;
     [SerializeField]
     private float vel;
-    private float timer;
+    private float timer = 0;
+    private Rigidbody rgb;
 
-    void Awake()
-    {
+    void Awake () {
         rgb = GetComponent<Rigidbody>();
-    }
-    void Start () {
-        timer = 0;
 	}
 	void Update () {
         timer += Time.deltaTime;
@@ -27,16 +23,13 @@ public class Proyectil01 : Proyectil {
     }
     public override void Activarse(Vector3 pos, Quaternion rot)
     {
-        gameObject.transform.position = pos;
-        gameObject.transform.rotation = rot;
+        base.Activarse(pos, rot);
         rgb.Sleep();
-        gameObject.SetActive(true);
-
     }
     public override void Desactivarse()
     {
+        base.Desactivarse();
         timer -= timer;
-        gameObject.SetActive(false);
     }
     public override void AddVelocity()
     {

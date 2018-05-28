@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114271231123524510}
   - component: {fileID: 135857256211403650}
   m_Layer: 0
-  m_Name: Proyectil01
+  m_Name: BolaFuego
   m_TagString: Proyectil
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
