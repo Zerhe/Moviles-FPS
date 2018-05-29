@@ -8,31 +8,37 @@ public class BolaFuego : Proyectil {
     private float vel;
     private float timer = 0;
     private Rigidbody rgb;
+    private PoolObject po;
 
-    void Awake () {
+    protected void Awake ()
+    {
         rgb = GetComponent<Rigidbody>();
-	}
-	void Update () {
+        po = GetComponent<PoolObject>();
+    }
+    void Update () {
         timer += Time.deltaTime;
         if (timer > 2)
-            Desactivarse();
+            gameObject.SetActive(false);
     }
     void OnCollisionEnter(Collision coll)
     {
-        Desactivarse();
-    }
-    public override void Activarse(Vector3 pos, Quaternion rot)
-    {
-        base.Activarse(pos, rot);
-        rgb.Sleep();
-    }
-    public override void Desactivarse()
-    {
-        base.Desactivarse();
-        timer -= timer;
+        gameObject.SetActive(false);
+
     }
     public override void AddVelocity()
     {
         rgb.AddRelativeForce(Vector3.up * vel, ForceMode.VelocityChange);
+    }
+    protected void OnEnable()
+    {
+        rgb.Sleep();
+        AddVelocity();
+    }
+    protected void OnDisable()
+    {
+        if (po)
+        po.Recycle();
+        timer -= timer;
+
     }
 }

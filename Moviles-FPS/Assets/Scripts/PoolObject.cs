@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PoolObject : MonoBehaviour
 {
-    public Pool pool;
+    private Pool pool;
 
     public void SetPool(Pool pool)
     {

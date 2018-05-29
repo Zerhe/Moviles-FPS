@@ -14,15 +14,19 @@ public class Pool : MonoBehaviour
         for (int i = 0; i < Count; i++)
         {
             PoolObject po = CreateObject();
+            po.gameObject.SetActive(false);
             AddToPool(po);
         }
 	}
 
-    public PoolObject GetPooledObject()
+    public PoolObject GetPooledObject(Vector3 pos, Quaternion rot)
     {
         if (pool.Count > 0)
         {
             PoolObject po = pool[0];
+            po.transform.position = pos;
+            po.transform.rotation = rot;
+            po.gameObject.SetActive(true);
             pool.RemoveAt(0);
             return po;
         }
@@ -38,6 +42,7 @@ public class Pool : MonoBehaviour
 
     public void AddToPool(PoolObject po)
     {
+        
         if (!pool.Contains(po))
             pool.Add(po);
     }
@@ -48,7 +53,7 @@ public class Pool : MonoBehaviour
 
         PoolObject po = go.AddComponent<PoolObject>();
         po.SetPool(this);
-        gameObject.SetActive(false);
+        
         return po;
     }
 }

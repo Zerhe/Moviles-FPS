@@ -5,9 +5,7 @@ using UnityEngine;
 public class Disparar : MonoBehaviour {
     [SerializeField]
     private Pool _poolProyectiles;
-
-    private Proyectil _proyectil;
-
+    private BolaFuego _proyectil;
     [SerializeField]
     private Transform _spawnTransform;
     private string dispararButton;
@@ -25,10 +23,8 @@ public class Disparar : MonoBehaviour {
 
         if (Input.GetButtonDown(dispararButton) && disparar)
         {
-            GameObject objeto = _poolProyectiles.GetPooledObject().gameObject;
-            _proyectil = objeto.GetComponent<BolaFuego>();
-            _proyectil.Activarse(_spawnTransform.position, _spawnTransform.rotation);
-            _proyectil.AddVelocity();
+            GameObject objeto = _poolProyectiles.GetPooledObject(_spawnTransform.position, _spawnTransform.rotation).gameObject;
+
             disparar = false;
         }
 
@@ -43,8 +39,5 @@ public class Disparar : MonoBehaviour {
             timerDisparo -= timerDisparo;
         }
     }
-    void InstanciarProyectil(GameObject proyectilObj, Transform puntoDisparo)
-    {
-    
-    }
+
 }
