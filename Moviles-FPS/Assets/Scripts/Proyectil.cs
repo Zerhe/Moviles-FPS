@@ -5,4 +5,12 @@ using UnityEngine;
 public abstract class Proyectil : Objeto
 {
     public abstract void AddVelocity();
+    protected override void Awake()
+    {
+        base.Awake();
+    }
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+    }
 }

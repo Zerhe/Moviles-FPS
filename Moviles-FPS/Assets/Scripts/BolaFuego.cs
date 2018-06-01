@@ -8,12 +8,13 @@ public class BolaFuego : Proyectil {
     private float vel;
     private float timer = 0;
     private Rigidbody rgb;
-    private PoolObject po;
+    //private PoolObject po;
 
-    protected void Awake ()
+    protected override void Awake ()
     {
+        base.Awake();
         rgb = GetComponent<Rigidbody>();
-        po = GetComponent<PoolObject>();
+        //po = GetComponent<PoolObject>();
     }
     void Update () {
         timer += Time.deltaTime;
@@ -34,11 +35,11 @@ public class BolaFuego : Proyectil {
         rgb.Sleep();
         AddVelocity();
     }
-    protected void OnDisable()
+    protected override void OnDisable()
     {
-        if (po)
-        po.Recycle();
+        base.OnDisable();
+        //if (po)
+        //po.Recycle();
         timer -= timer;
-
     }
 }
