@@ -9,6 +9,7 @@ public class Scene : MonoBehaviour {
     }
 	
 	void Update () {
-		
+        if (Input.GetButton("Cancel"))
+            Application.Quit();
 	}
 }

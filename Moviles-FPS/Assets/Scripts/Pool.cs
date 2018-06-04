@@ -33,7 +33,7 @@ public class Pool : MonoBehaviour
         else
         {
             PoolObject po = CreateObject();
-
+            Count++;
             Debug.LogWarning("Creando objeto en realtime.");
 
             return po;
