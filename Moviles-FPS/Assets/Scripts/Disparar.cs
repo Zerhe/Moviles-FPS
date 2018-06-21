@@ -8,9 +8,13 @@ public class Disparar : MonoBehaviour {
     private BolaFuego _proyectil;
     [SerializeField]
     private Transform _spawnTransform;
+    [SerializeField]
+    private StatsPlayer statsP;
     private string dispararButton;
     private bool disparar;
     private float timerDisparo;
+    [SerializeField]
+    private float costoDisparo;
 
     void Start ()
     {
@@ -21,10 +25,10 @@ public class Disparar : MonoBehaviour {
 	void Update ()
     {
 
-        if (Input.GetButtonDown(dispararButton) && disparar)
+        if (Input.GetButtonDown(dispararButton) && disparar && statsP.mana > 10)
         {
             GameObject objeto = _poolProyectiles.GetPooledObject(_spawnTransform.position, _spawnTransform.rotation).gameObject;
-
+            statsP.mana -= costoDisparo;
             disparar = false;
         }
 

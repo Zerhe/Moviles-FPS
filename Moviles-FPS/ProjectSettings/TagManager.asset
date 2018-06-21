@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Proyectil
   - Honguito
+  - PlayerCuerpo
   layers:
   - Default
   - TransparentFX

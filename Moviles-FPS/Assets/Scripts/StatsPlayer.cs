@@ -14,6 +14,10 @@ public class StatsPlayer : MonoBehaviour
     private Slider barraVida;
     [SerializeField]
     private Slider barraMana;
+    [SerializeField]
+    private GameObject escudo;
+    [SerializeField]
+    private float regeMana;
 
     private void Start()
     {
@@ -25,15 +29,23 @@ public class StatsPlayer : MonoBehaviour
         barraVida.value = vida;
         barraMana.value = mana;
         if (mana < maxMana)
-            mana += 0.5f;
+            mana += regeMana;
         if (vida <= 0)
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-    void OnCollisionStay(Collision collision)
+    private void OnTriggerStay(Collider other)
     {
-        if (collision.gameObject.tag == "Honguito")
+        if (other.gameObject.tag == "Honguito")
         {
-            vida--;
+            //RecibirDanio(2);
         }
+    }
+    public void RecibirDanio(float danio)
+    {
+        if (escudo.activeInHierarchy)
+            mana -= danio*2;
+        else
+            vida -= danio;
+
     }
 }

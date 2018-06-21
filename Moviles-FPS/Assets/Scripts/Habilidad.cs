@@ -18,7 +18,6 @@ public class Habilidad : MonoBehaviour
         if (Input.GetButton(habilidadButton) && stats.mana > 0)
         {
             go.SetActive(true);
-            stats.mana--;
         }
         else if (Input.GetButtonUp(habilidadButton))
         {
