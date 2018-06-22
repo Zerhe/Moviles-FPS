@@ -846,7 +846,7 @@ RectTransform:
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.01580913, y: 0.90523016}
-  m_AnchorMax: {x: 0.4388299, y: 0.97}
+  m_AnchorMax: {x: 0.3469345, y: 0.96778107}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -922,7 +922,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 324289336}
   m_LocalRotation: {x: -0.015289396, y: 0.05097687, z: -0.00078356266, w: 0.9985825}
-  m_LocalPosition: {x: 0.02, y: -0.25, z: 0.18}
+  m_LocalPosition: {x: 0.047, y: -0.242, z: 0.44}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 1068906653}
@@ -942,7 +942,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: bc7fd3b3954423c40b06c399890d41d0, type: 2}
+  - {fileID: 2100000, guid: 09b25c6656145e2428d905ae2c682ec2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5921,7 +5921,7 @@ RectTransform:
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.01580913, y: 0.84900004}
-  m_AnchorMax: {x: 0.4388299, y: 0.90523016}
+  m_AnchorMax: {x: 0.3469345, y: 0.90523016}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
