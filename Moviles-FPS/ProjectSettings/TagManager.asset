@@ -7,6 +7,8 @@ TagManager:
   - Proyectil
   - Honguito
   - PlayerCuerpo
+  - BolaFuego
+  - BolaHielo
   layers:
   - Default
   - TransparentFX

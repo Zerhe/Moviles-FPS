@@ -5,7 +5,7 @@ using UnityEngine;
 public class Disparar : MonoBehaviour {
     [SerializeField]
     private Pool _poolProyectiles;
-    private BolaFuego _proyectil;
+    //private BolaFuego _proyectil;
     [SerializeField]
     private Transform _spawnTransform;
     [SerializeField]

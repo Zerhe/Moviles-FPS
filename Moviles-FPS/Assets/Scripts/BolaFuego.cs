@@ -7,21 +7,23 @@ public class BolaFuego : Proyectil {
     [SerializeField]
     private float vel;
     private float timer = 0;
+    private float timeAlive = 2;
     private Rigidbody rgb;
 
     protected void Awake ()
     {
         rgb = GetComponent<Rigidbody>();
+        danio = 10;
     }
-    void Update () {
+    void Update ()
+    {
         timer += Time.deltaTime;
-        if (timer > 2)
+        if (timer > timeAlive)
             gameObject.SetActive(false);
     }
     void OnCollisionEnter(Collision coll)
     {
         gameObject.SetActive(false);
-
     }
     public override void AddVelocity()
     {
