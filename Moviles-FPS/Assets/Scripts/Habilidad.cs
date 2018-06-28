@@ -8,6 +8,8 @@ public class Habilidad : MonoBehaviour
     [SerializeField]
     GameObject go;
     private string habilidadButton = "Habilidad";
+    [SerializeField]
+    private JoyButton skillJoyButton;
 
     void Awake()
     {
@@ -15,7 +17,9 @@ public class Habilidad : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetButton(habilidadButton) && stats.mana > 0)
+#if UNITY_STANDALONE_WIN
+
+        if (Input.GetButton(habilidadButton) && stats.GetMana() > 0)
         {
             go.SetActive(true);
         }
@@ -23,7 +27,20 @@ public class Habilidad : MonoBehaviour
         {
             go.SetActive(false);
         }
-        if (stats.mana < 0)
+#endif
+#if UNITY_ANDROID
+
+        if (skillJoyButton.GetPressed() && stats.GetMana() > 0)
+        {
+            go.SetActive(true);
+        }
+        else if (!skillJoyButton.GetPressed())
+        {
+            go.SetActive(false);
+        }
+#endif
+
+        if (stats.GetMana() < 0)
             go.SetActive(false);
     }
 }

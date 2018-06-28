@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RotPlayer : MonoBehaviour {
+public class RotPlayer : MonoBehaviour
+{
 
     private string rotXButton;
     private string rotYButton;
@@ -13,17 +14,25 @@ public class RotPlayer : MonoBehaviour {
     Vector2 mouseLook;
     Vector2 smoothV;
     GameObject character;
+    [SerializeField]
+    private Joystick rotJoystick;
 
-    void Start () {
+    void Start()
+    {
         rotXButton = "MouseX";
         rotYButton = "MouseY";
 
         character = this.transform.parent.gameObject;
     }
-	
-	void Update () {
-        Vector2 md = new Vector2(Input.GetAxisRaw(rotXButton), Input.GetAxisRaw(rotYButton));
 
+    void Update()
+    {
+#if UNITY_STANDALONE_WIN
+        Vector2 md = new Vector2(Input.GetAxisRaw(rotXButton), Input.GetAxisRaw(rotYButton));
+#endif
+#if UNITY_ANDROID
+        Vector2 md = new Vector2(rotJoystick.Horizontal, rotJoystick.Vertical);
+#endif
         md = Vector2.Scale(md, new Vector2(sensitivity * smoothing, sensitivity * smoothing));
         smoothV.x = Mathf.Lerp(smoothV.x, md.x, 1f / smoothing);
         smoothV.y = Mathf.Lerp(smoothV.y, md.y, 1f / smoothing);

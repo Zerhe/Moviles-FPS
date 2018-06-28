@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VidaEnemy : MonoBehaviour {
+public class VidaEnemy : MonoBehaviour
+{
     [SerializeField]
     private Transform barraVidaT;
     private Vector3 scaleVida;
@@ -19,5 +20,17 @@ public class VidaEnemy : MonoBehaviour {
     {
         scaleVida.x = cantVida / maxVida;
         barraVidaT.localScale = scaleVida;
+        if (cantVida <= 0)
+        {
+            gameObject.SetActive(false);
+        }
+    }
+    public void RecibirDanio(float danio)
+    {
+        cantVida -= danio;
+    }
+    public void OnDisable()
+    {
+        cantVida = maxVida;
     }
 }

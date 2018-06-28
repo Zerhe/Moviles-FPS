@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Honguito : Enemy
+public class Honguito : MonoBehaviour
 {
+    [SerializeField]
+    float ataque;
+    float timer = 0;
+    float TiempoAtacar = 0.8f;
     VidaEnemy vida;
     Animator anim;
     StatsPlayer statsP;
-    float timer = 0;
-    [SerializeField]
-    float danio;
 
     private void Awake()
     {
@@ -18,14 +19,10 @@ public class Honguito : Enemy
         statsP = GameObject.FindGameObjectWithTag("PlayerCuerpo").GetComponent<StatsPlayer>();
     }
     private void Update()
-    {
-        if (vida.cantVida <= 0)
+    {     
+        if (timer > TiempoAtacar)
         {
-            gameObject.SetActive(false);
-        }
-        if (timer > 0.8)
-        {
-            statsP.RecibirDanio(danio);
+            statsP.RecibirDanio(ataque);
             timer -= timer;
         }
     }
@@ -34,11 +31,12 @@ public class Honguito : Enemy
         if (other.gameObject.tag == "Proyectil")
         {
             print("MeDañaron");
-            vida.cantVida--;
+            float danio = other.gameObject.GetComponent<Proyectil>().GetDanio();
+            vida.RecibirDanio(danio);
         }
         if (other.gameObject.tag == "Player")
         {
-            timer = 0;
+            timer -= timer;
             anim.SetBool("Atacar", true);
         }
     }
@@ -56,9 +54,5 @@ public class Honguito : Enemy
             anim.SetBool("Atacar", false);
         }
     }
-    protected override void OnDisable()
-    {
-        base.OnDisable();
-        vida.cantVida = vida.maxVida;
-    }
+    
 }

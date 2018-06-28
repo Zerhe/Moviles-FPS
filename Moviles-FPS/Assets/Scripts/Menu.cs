@@ -7,16 +7,19 @@ public class Menu : MonoBehaviour {
 
     void Start()
     {
-        
+        Cursor.lockState = CursorLockMode.Confined;
     }
-
     void Update()
     {
-        if (Input.GetButton("Cancel"))
-            Application.Quit();
+        
     }
     public void ChangeScene(string nameScene)
     {
         SceneManager.LoadScene(nameScene);
+    }
+    public void QuitGame()
+    {
+        Application.Quit();
+
     }
 }

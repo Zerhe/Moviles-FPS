@@ -2,11 +2,47 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Proyectil : Objeto
+public class Proyectil : MonoBehaviour
 {
-    public abstract void AddVelocity();
-    protected override void OnDisable()
+    [SerializeField]
+    private float vel;
+    [SerializeField]
+    private float danio;
+    private float timer = 0;
+    [SerializeField]
+    private float timeAlive;
+    private Rigidbody rgb;
+
+    protected void Awake()
     {
-        base.OnDisable();
+        rgb = GetComponent<Rigidbody>();
+        danio = 10;
+    }
+    void Update()
+    {
+        timer += Time.deltaTime;
+        if (timer > timeAlive)
+            gameObject.SetActive(false);
+    }
+    void OnCollisionEnter(Collision coll)
+    {
+        gameObject.SetActive(false);
+    }
+    public void AddVelocity()
+    {
+        rgb.AddRelativeForce(Vector3.forward * vel, ForceMode.VelocityChange);
+    }
+    public float GetDanio()
+    {
+        return danio;
+    }
+    protected void OnEnable()
+    {
+        rgb.Sleep();
+        AddVelocity();
+    }
+    public void OnDisable()
+    {
+        timer -= timer;
     }
 }

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Disparar : MonoBehaviour {
+
     [SerializeField]
     private Pool _poolProyectiles;
-    //private BolaFuego _proyectil;
     [SerializeField]
     private Transform _spawnTransform;
     [SerializeField]
@@ -15,6 +15,10 @@ public class Disparar : MonoBehaviour {
     private float timerDisparo;
     [SerializeField]
     private float costoDisparo;
+    [SerializeField]
+    private float waitTimeShoot;
+    [SerializeField]
+    private JoyButton shootJoyButton;
 
     void Start ()
     {
@@ -24,20 +28,30 @@ public class Disparar : MonoBehaviour {
     }
 	void Update ()
     {
+#if UNITY_STANDALONE_WIN
 
-        if (Input.GetButtonDown(dispararButton) && disparar && statsP.mana > 10)
+        if (Input.GetButtonDown(dispararButton) && disparar && statsP.GetMana() > 10)
         {
             GameObject objeto = _poolProyectiles.GetPooledObject(_spawnTransform.position, _spawnTransform.rotation).gameObject;
-            statsP.mana -= costoDisparo;
+            statsP.RestarMana(costoDisparo);
             disparar = false;
         }
+#endif
+#if UNITY_ANDROID
 
+        if (shootJoyButton.GetPressed() && disparar && statsP.GetMana() > 10)
+        {
+            GameObject objeto = _poolProyectiles.GetPooledObject(_spawnTransform.position, _spawnTransform.rotation).gameObject;
+            statsP.RestarMana(costoDisparo);
+            disparar = false;
+        }
+#endif
 
         if (disparar == false)
         {
             timerDisparo += Time.deltaTime;
         }
-        if (timerDisparo > 0.5)
+        if (timerDisparo > waitTimeShoot)
         {
             disparar = true;
             timerDisparo -= timerDisparo;

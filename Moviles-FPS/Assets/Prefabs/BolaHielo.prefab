@@ -21,9 +21,10 @@ GameObject:
   - component: {fileID: 4060299702782100}
   - component: {fileID: 33751175429232678}
   - component: {fileID: 23348903375336718}
+  - component: {fileID: 114508662379625148}
+  - component: {fileID: 114844929133501296}
   - component: {fileID: 54123515431145544}
   - component: {fileID: 135681417643260542}
-  - component: {fileID: 114023498154412096}
   m_Layer: 0
   m_Name: BolaHielo
   m_TagString: Proyectil
@@ -100,7 +101,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114023498154412096
+--- !u!114 &114508662379625148
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -108,10 +109,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 1459406912990732}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 365d6d29571e1974da93d92bfb5fa7db, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b36ece8031e56346a36f0479aae22ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vel: 30
+--- !u!114 &114844929133501296
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1459406912990732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b81f9ad6a6a88b4bb26b145f876575c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vel: 50
+  danio: 5
+  timeAlive: 3
 --- !u!135 &135681417643260542
 SphereCollider:
   m_ObjectHideFlags: 1

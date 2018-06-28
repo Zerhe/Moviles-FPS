@@ -21,9 +21,10 @@ GameObject:
   - component: {fileID: 4204673279909144}
   - component: {fileID: 33648880818661730}
   - component: {fileID: 23748963790307602}
+  - component: {fileID: 114202337000415320}
+  - component: {fileID: 114759120093149370}
   - component: {fileID: 54328180098932582}
   - component: {fileID: 135857256211403650}
-  - component: {fileID: 114271231123524510}
   m_Layer: 0
   m_Name: BolaFuego
   m_TagString: Proyectil
@@ -100,7 +101,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114271231123524510
+--- !u!114 &114202337000415320
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -108,10 +109,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 1829139321611096}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e423f099a6a92ff488c5b76d5b05d856, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b36ece8031e56346a36f0479aae22ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114759120093149370
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1829139321611096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b81f9ad6a6a88b4bb26b145f876575c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   vel: 30
+  danio: 10
+  timeAlive: 1.2
 --- !u!135 &135857256211403650
 SphereCollider:
   m_ObjectHideFlags: 1
