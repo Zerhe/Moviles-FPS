@@ -384,7 +384,7 @@ GameObject:
   - component: {fileID: 135099684603894774}
   m_Layer: 0
   m_Name: MagoHielo
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -730,7 +730,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100048}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -59.32299, y: 9.560045, z: -49.33185}
+  m_LocalPosition: {x: -68.42, y: 12, z: -348.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400046}
@@ -1106,8 +1106,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnProyectil: {fileID: 4116804918618778}
-  waitTimeShoot: 2
-  maxDisparos: 1
+  timeToShot: 2
+  timeBetweenShot: 1
+  maxDisparos: 3
 --- !u!114 &114638789669189546
 MonoBehaviour:
   m_ObjectHideFlags: 1

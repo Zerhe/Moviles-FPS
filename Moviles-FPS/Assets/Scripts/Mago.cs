@@ -12,6 +12,7 @@ public class Mago : MonoBehaviour
     private LookAtPlayer lookPlayer;
     private float timeMove = 0.1f;
     private bool still = false;
+    private bool collPlayer = false;
 
     private void Awake()
     {
@@ -23,7 +24,7 @@ public class Mago : MonoBehaviour
     }
     private void Start()
     {
-        //agent.isStopped = true;
+        agent.isStopped = true;
     }
     private void Update()
     {
@@ -40,7 +41,7 @@ public class Mago : MonoBehaviour
             still = true;
             anim.SetBool("Move", false);
         }
-        if (attack.GetDisparar() && still)
+        if (attack.GetDisparar() && still && collPlayer)
         {
             anim.SetBool("Attack", true);
         }
@@ -52,6 +53,10 @@ public class Mago : MonoBehaviour
     {
         return still;
     }
+    public bool SeePlayer()
+    {
+        return false;
+    }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Proyectil")
@@ -60,10 +65,11 @@ public class Mago : MonoBehaviour
             vida.RecibirDanio(danio);
         }
     }
-    /*private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
+            collPlayer = true;
             lookPlayer.enabled = true;
             agent.isStopped = false;
         }
@@ -72,8 +78,9 @@ public class Mago : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
+            collPlayer = false;
             lookPlayer.enabled = false;
             agent.isStopped = true;
         }
-    }*/
+    }
 }

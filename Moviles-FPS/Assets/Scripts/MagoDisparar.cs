@@ -11,12 +11,16 @@ public class MagoDisparar : MonoBehaviour
     private RaycastHit infColi;
     private Transform playerT;
     private float timer = 0;
+    private float timer2 = 0;
     [SerializeField]
-    private float waitTimeShoot;
+    private float timeToShot;
+    [SerializeField]
+    private float timeBetweenShot;
     private float disparos = 0;
     [SerializeField]
     private float maxDisparos;
     private bool disparar = true;
+    private bool shooting = true;
     private Mago mago;
 
     void Awake()
@@ -41,8 +45,12 @@ public class MagoDisparar : MonoBehaviour
                 {
                     if (disparar && mago.GetStill())
                     {
-                        GameObject objeto = poolProyectiles.GetPooledObject(spawnProyectil.position, spawnProyectil.rotation).gameObject;
-                        disparos++;
+                        if (shooting)
+                        {
+                            GameObject objeto = poolProyectiles.GetPooledObject(spawnProyectil.position, spawnProyectil.rotation).gameObject;
+                            disparos++;
+                            shooting = false;
+                        }
                     }
                 }
 
@@ -60,10 +68,19 @@ public class MagoDisparar : MonoBehaviour
         {
             timer += Time.deltaTime;
         }
-        if (timer > waitTimeShoot)
+        if (timer > timeToShot)
         {
             timer -= timer;
             disparar = true;
+        }
+        if (disparar && !shooting)
+        {
+            timer2 += Time.deltaTime;
+        }
+        if (timer2 > timeBetweenShot)
+        {
+            timer2 -= timer2;
+            shooting = true;
         }
     }
     public bool GetDisparar()

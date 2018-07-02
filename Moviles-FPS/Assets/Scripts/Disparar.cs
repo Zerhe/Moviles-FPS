@@ -14,11 +14,13 @@ public class Disparar : MonoBehaviour {
     private bool disparar;
     private float timerDisparo;
     [SerializeField]
+    private JoyButton shootJoyButton;
+    [SerializeField]
+    private GameObject escudo;
+    [SerializeField]
     private float costoDisparo;
     [SerializeField]
     private float waitTimeShoot;
-    [SerializeField]
-    private JoyButton shootJoyButton;
 
     void Start ()
     {
@@ -30,7 +32,7 @@ public class Disparar : MonoBehaviour {
     {
 #if UNITY_STANDALONE_WIN
 
-        if (Input.GetButtonDown(dispararButton) && disparar && statsP.GetMana() > 10)
+        if (Input.GetButtonDown(dispararButton) && disparar && statsP.GetMana() > 10 && !escudo.activeInHierarchy)
         {
             GameObject objeto = _poolProyectiles.GetPooledObject(_spawnTransform.position, _spawnTransform.rotation).gameObject;
             statsP.RestarMana(costoDisparo);
@@ -39,7 +41,7 @@ public class Disparar : MonoBehaviour {
 #endif
 #if UNITY_ANDROID
 
-        if (shootJoyButton.GetPressed() && disparar && statsP.GetMana() > 10)
+        if (shootJoyButton.GetPressed() && disparar && statsP.GetMana() > 10 && !escudo.activeInHierarchy)
         {
             GameObject objeto = _poolProyectiles.GetPooledObject(_spawnTransform.position, _spawnTransform.rotation).gameObject;
             statsP.RestarMana(costoDisparo);
