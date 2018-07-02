@@ -8,8 +8,8 @@ public class MagoDisparar : MonoBehaviour
     private Pool poolProyectiles;
     [SerializeField]
     private Transform spawnProyectil;
-    private RaycastHit infColi;
-    private Transform playerT;
+    //private RaycastHit infColi;
+    //private Transform playerT;
     private float timer = 0;
     private float timer2 = 0;
     [SerializeField]
@@ -25,7 +25,7 @@ public class MagoDisparar : MonoBehaviour
 
     void Awake()
     {
-        playerT = GameObject.FindGameObjectWithTag("PlayerCuerpo").transform;
+        //playerT = GameObject.FindGameObjectWithTag("PlayerCuerpo").transform;
         poolProyectiles = GameObject.Find("PoolBolasHielo").GetComponent<Pool>();
         mago = GetComponent<Mago>();
     }
@@ -37,20 +37,17 @@ public class MagoDisparar : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            if (Physics.Linecast(spawnProyectil.position, playerT.position, out infColi))
+            if (mago.SeePlayer())
             {
-                Debug.DrawLine(spawnProyectil.position, playerT.position, Color.red);
+                Debug.DrawLine(spawnProyectil.position, other.gameObject.transform.position, Color.red);
 
-                if (infColi.collider.gameObject.tag == "PlayerCuerpo")
+                if (disparar && mago.GetStill())
                 {
-                    if (disparar && mago.GetStill())
+                    if (shooting)
                     {
-                        if (shooting)
-                        {
-                            GameObject objeto = poolProyectiles.GetPooledObject(spawnProyectil.position, spawnProyectil.rotation).gameObject;
-                            disparos++;
-                            shooting = false;
-                        }
+                        GameObject objeto = poolProyectiles.GetPooledObject(spawnProyectil.position, spawnProyectil.rotation).gameObject;
+                        disparos++;
+                        shooting = false;
                     }
                 }
 

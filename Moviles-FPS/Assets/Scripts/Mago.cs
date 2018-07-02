@@ -10,6 +10,10 @@ public class Mago : MonoBehaviour
     private NavMeshAgent agent;
     private MagoDisparar attack;
     private LookAtPlayer lookPlayer;
+    private Transform playerT;
+    [SerializeField]
+    private Transform magoEyesT;
+    private RaycastHit infColi;
     private float timeMove = 0.1f;
     private bool still = false;
     private bool collPlayer = false;
@@ -21,6 +25,7 @@ public class Mago : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         attack = GetComponent<MagoDisparar>();
         lookPlayer = GetComponent<LookAtPlayer>();
+        playerT = GameObject.FindGameObjectWithTag("PlayerCuerpo").transform;
     }
     private void Start()
     {
@@ -29,7 +34,7 @@ public class Mago : MonoBehaviour
     private void Update()
     {
         if (agent.velocity.x > timeMove ||
-            agent.velocity.z > timeMove || 
+            agent.velocity.z > timeMove ||
             agent.velocity.x < -timeMove ||
             agent.velocity.z < -timeMove)
         {
@@ -41,12 +46,14 @@ public class Mago : MonoBehaviour
             still = true;
             anim.SetBool("Move", false);
         }
-        if (attack.GetDisparar() && still && collPlayer)
+        if (attack.GetDisparar() && still && collPlayer && SeePlayer())
         {
             anim.SetBool("Attack", true);
         }
         else
             anim.SetBool("Attack", false);
+
+            Debug.DrawLine(magoEyesT.position, playerT.position, Color.blue);
 
     }
     public bool GetStill()
@@ -55,6 +62,15 @@ public class Mago : MonoBehaviour
     }
     public bool SeePlayer()
     {
+        if (Physics.Linecast(magoEyesT.position, playerT.position, out infColi))
+        {
+            if (infColi.collider.gameObject.tag == "PlayerCuerpo")
+            {
+                print("teVeoo");
+                return true;
+            }
+        }
+        print("noTeVeoo");
         return false;
     }
     private void OnCollisionEnter(Collision collision)
@@ -68,10 +84,17 @@ public class Mago : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
-        {
             collPlayer = true;
-            lookPlayer.enabled = true;
-            agent.isStopped = false;
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            if (SeePlayer() && agent.isStopped)
+            {
+                lookPlayer.enabled = true;
+                agent.isStopped = false;
+            }
         }
     }
     private void OnTriggerExit(Collider other)
