@@ -21,12 +21,14 @@ public class Scene : MonoBehaviour {
         {
             pause = true;
             panelPausa.SetActive(true);
+            Time.timeScale = 0;
             Cursor.visible = true;
         }
         else if (Input.GetButtonDown("Cancel") && pause)
         {
             pause = false;
             panelPausa.SetActive(false);
+            Time.timeScale = 1;
             Cursor.visible = false;
         }
     }

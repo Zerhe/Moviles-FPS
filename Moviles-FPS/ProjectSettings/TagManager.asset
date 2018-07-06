@@ -8,6 +8,7 @@ TagManager:
   - Honguito
   - PlayerCuerpo
   - Enemy
+  - SilverKey
   layers:
   - Default
   - TransparentFX

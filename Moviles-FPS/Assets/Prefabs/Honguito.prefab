@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4238683519061498}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bone003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,7 +34,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4190922823179628}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bone002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50,7 +50,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4281209160022846}
   - component: {fileID: 137815239377540394}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: MushroomMon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66,7 +66,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4489293852272444}
   - component: {fileID: 212662369783762968}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Relleno
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 195884397521125026}
   - component: {fileID: 135837897645025112}
   - component: {fileID: 54617752538052224}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Honguito
   m_TagString: Honguito
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4932434641308212}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bone001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4869230454781950}
   - component: {fileID: 212814868557836368}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Fondo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,7 +136,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4706696128972184}
   - component: {fileID: 114963010677616830}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BarraVidaEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,7 +151,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4042438668644246}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166,7 +166,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4100360167609294}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Dummy001
   m_TagString: Untagged
   m_Icon: {fileID: 0}

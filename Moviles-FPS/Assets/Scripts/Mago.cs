@@ -62,15 +62,16 @@ public class Mago : MonoBehaviour
     }
     public bool SeePlayer()
     {
-        if (Physics.Linecast(magoEyesT.position, playerT.position, out infColi))
+        int layerMask = 1 << 2;
+        layerMask = ~layerMask;
+
+        if (Physics.Linecast(magoEyesT.position, playerT.position, out infColi, layerMask))
         {
             if (infColi.collider.gameObject.tag == "PlayerCuerpo")
             {
-                print("teVeoo");
                 return true;
             }
         }
-        print("noTeVeoo");
         return false;
     }
     private void OnCollisionEnter(Collision collision)

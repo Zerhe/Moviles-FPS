@@ -25,7 +25,7 @@ public class RotPlayer : MonoBehaviour
         character = this.transform.parent.gameObject;
     }
 
-    void Update()
+    void FixedUpdate()
     {
 #if UNITY_STANDALONE_WIN
         Vector2 md = new Vector2(Input.GetAxisRaw(rotXButton), Input.GetAxisRaw(rotYButton));

@@ -16,6 +16,12 @@ public class StatsPlayer : MonoBehaviour
     private Slider barraVida;
     [SerializeField]
     private Slider barraMana;
+    private int silverKeys;
+    [SerializeField]
+    private Text textSilverKey;
+    private int goldKeys;
+    [SerializeField]
+    private Text textGoldKey;
     [SerializeField]
     private GameObject escudo;
     [SerializeField]
@@ -36,6 +42,9 @@ public class StatsPlayer : MonoBehaviour
     {
         barraVida.value = vida;
         barraMana.value = mana;
+        textSilverKey.text = "= " + silverKeys;
+        textGoldKey.text = "= " + goldKeys;
+
         RegenerarMana();
         if (vida <= 0)
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -43,6 +52,18 @@ public class StatsPlayer : MonoBehaviour
     public float GetMana()
     {
         return mana;
+    }
+    public float GetSilverKeys()
+    {
+        return silverKeys;
+    }
+    public void SumSilverKeys(int cant)
+    {
+        silverKeys -= cant;
+    }
+    public float GetGoldKeys()
+    {
+        return goldKeys;
     }
     public void RecibirDanio(float danio)
     {
@@ -87,6 +108,22 @@ public class StatsPlayer : MonoBehaviour
             print("MeDañaron");
             float danio = collision.gameObject.GetComponent<Proyectil>().GetDanio();
             RecibirDanio(danio);
+
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "SilverKey")
+        {
+            silverKeys++;
+            print(silverKeys);
+            other.gameObject.SetActive(false);
+        }
+        if (other.gameObject.tag == "GodKeys")
+        {
+            goldKeys++;
+            print(goldKeys);
+            other.gameObject.SetActive(false);
         }
     }
 }
