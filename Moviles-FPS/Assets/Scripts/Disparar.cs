@@ -9,6 +9,8 @@ public class Disparar : MonoBehaviour {
     [SerializeField]
     private Transform _spawnTransform;
     [SerializeField]
+    private Transform target;
+    [SerializeField]
     private StatsPlayer statsP;
     private string dispararButton;
     private bool disparar;
@@ -26,15 +28,16 @@ public class Disparar : MonoBehaviour {
     {
         dispararButton = "Disparar";
         disparar = true;
-
     }
 	void Update ()
     {
+        Debug.DrawLine(_spawnTransform.position, target.position, Color.green);
 #if UNITY_STANDALONE_WIN
 
         if (Input.GetButtonDown(dispararButton) && disparar && statsP.GetMana() > 10 && !escudo.activeInHierarchy)
         {
             GameObject objeto = _poolProyectiles.GetPooledObject(_spawnTransform.position, _spawnTransform.rotation).gameObject;
+            objeto.GetComponent<Proyectil>().AddVelocity(Direction.CalculateDirection(target.position, _spawnTransform.position));
             statsP.RestarMana(costoDisparo);
             disparar = false;
         }
@@ -44,6 +47,7 @@ public class Disparar : MonoBehaviour {
         if (shootJoyButton.GetPressed() && disparar && statsP.GetMana() > 10 && !escudo.activeInHierarchy)
         {
             GameObject objeto = _poolProyectiles.GetPooledObject(_spawnTransform.position, _spawnTransform.rotation).gameObject;
+            objeto.GetComponent<Proyectil>().AddVelocity(Direction.CalculateDirection(target.position, _spawnTransform.position));
             statsP.RestarMana(costoDisparo);
             disparar = false;
         }
@@ -59,5 +63,4 @@ public class Disparar : MonoBehaviour {
             timerDisparo -= timerDisparo;
         }
     }
-
 }

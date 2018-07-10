@@ -15,7 +15,10 @@ public class AbrirPuerta : MonoBehaviour
     [SerializeField]
     private float maxBajo = 0;
     private StatsPlayer statsPlayer;
-    private bool opened = false;
+    [SerializeField]
+    private bool opened;
+    [SerializeField]
+    private bool block;
 
     private void Awake()
     {
@@ -44,17 +47,32 @@ public class AbrirPuerta : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            if (!opened)
+            if (!block)
             {
-                if (statsPlayer.GetSilverKeys() > 0)
+                if (!opened)
                 {
-                    statsPlayer.SumSilverKeys(1);
-                    abrir = true;
-                    opened = true;
+                    if (tipoPuerta == 1)
+                    {
+                        if (statsPlayer.GetSilverKeys() > 0)
+                        {
+                            statsPlayer.SumSilverKeys(-1);
+                            abrir = true;
+                            opened = true;
+                        }
+                    }
+                    else if (tipoPuerta == 2)
+                    {
+                        if (statsPlayer.GetGoldKeys() > 0)
+                        {
+                            statsPlayer.SumGoldenKeys(-1);
+                            abrir = true;
+                            opened = true;
+                        }
+                    }
                 }
+                else
+                    abrir = true;
             }
-            else
-                abrir = true;
         }
     }
     private void OnTriggerExit(Collider other)

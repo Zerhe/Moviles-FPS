@@ -730,7 +730,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100048}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -61.887638, y: 11.958551, z: -347.62396}
+  m_LocalPosition: {x: -46.429653, y: 11.968551, z: -348.36862}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400046}
@@ -917,7 +917,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4116804918618778}
-  - component: {fileID: 114266923707959098}
   m_Layer: 2
   m_Name: SpawnProyectiles
   m_TagString: Untagged
@@ -1068,17 +1067,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &114266923707959098
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1633222357362366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb093267ee54c6142819e17e6bbbf67e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114470874128185378
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1135,9 +1123,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnProyectil: {fileID: 4116804918618778}
-  timeToShot: 1
-  timeBetweenShot: 1
-  maxDisparos: 1
+  target: {fileID: 0}
+  timeToShot: 2
+  timeBetweenShot: 1.2
+  maxDisparos: 3
 --- !u!114 &114638789669189546
 MonoBehaviour:
   m_ObjectHideFlags: 1

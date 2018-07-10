@@ -16,6 +16,10 @@ public class StatsPlayer : MonoBehaviour
     private Slider barraVida;
     [SerializeField]
     private Slider barraMana;
+    [SerializeField]
+    private Slider fondoBarraVida;
+    [SerializeField]
+    private Slider fondoBarraMana;
     private int silverKeys;
     [SerializeField]
     private Text textSilverKey;
@@ -42,10 +46,15 @@ public class StatsPlayer : MonoBehaviour
     {
         barraVida.value = vida;
         barraMana.value = mana;
+        fondoBarraVida.value = maxVida;
+        fondoBarraMana.value = maxMana;
+
         textSilverKey.text = "= " + silverKeys;
         textGoldKey.text = "= " + goldKeys;
 
         RegenerarMana();
+        if (vida > maxVida)
+            vida = maxVida;
         if (vida <= 0)
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
@@ -53,17 +62,37 @@ public class StatsPlayer : MonoBehaviour
     {
         return mana;
     }
+    public void SumMana(float value)
+    {
+        mana += value;
+    }
+    public void SumMaxMana(float value)
+    {
+        maxMana += value;
+    }
+    public void SumVida(float value)
+    {
+        vida += value;
+    }
+    public void SumMaxVida(float value)
+    {
+        maxVida += value;
+    }
     public float GetSilverKeys()
     {
         return silverKeys;
     }
     public void SumSilverKeys(int cant)
     {
-        silverKeys -= cant;
+        silverKeys += cant;
     }
     public float GetGoldKeys()
     {
         return goldKeys;
+    }
+    public void SumGoldenKeys(int cant)
+    {
+        goldKeys += cant;
     }
     public void RecibirDanio(float danio)
     {

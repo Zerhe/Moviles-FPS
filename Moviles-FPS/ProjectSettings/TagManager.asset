@@ -9,6 +9,8 @@ TagManager:
   - PlayerCuerpo
   - Enemy
   - SilverKey
+  - GoldKey
+  - TargetEnemy
   layers:
   - Default
   - TransparentFX

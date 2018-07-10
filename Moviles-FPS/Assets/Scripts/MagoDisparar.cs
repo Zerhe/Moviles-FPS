@@ -8,8 +8,8 @@ public class MagoDisparar : MonoBehaviour
     private Pool poolProyectiles;
     [SerializeField]
     private Transform spawnProyectil;
-    //private RaycastHit infColi;
-    //private Transform playerT;
+    [SerializeField]
+    private Transform target;
     private float timer = 0;
     private float timer2 = 0;
     [SerializeField]
@@ -25,7 +25,7 @@ public class MagoDisparar : MonoBehaviour
 
     void Awake()
     {
-        //playerT = GameObject.FindGameObjectWithTag("PlayerCuerpo").transform;
+        target = GameObject.FindGameObjectWithTag("TargetEnemy").transform;
         poolProyectiles = GameObject.Find("PoolBolasHielo").GetComponent<Pool>();
         mago = GetComponent<Mago>();
     }
@@ -35,17 +35,18 @@ public class MagoDisparar : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "PlayerCuerpo")
         {
             if (mago.SeePlayer())
             {
-                Debug.DrawLine(spawnProyectil.position, other.gameObject.transform.position, Color.red);
+                Debug.DrawLine(spawnProyectil.position, target.position, Color.red);
 
                 if (disparar && mago.GetStill())
                 {
                     if (shooting)
                     {
                         GameObject objeto = poolProyectiles.GetPooledObject(spawnProyectil.position, spawnProyectil.rotation).gameObject;
+                        objeto.GetComponent<Proyectil>().AddVelocity(Direction.CalculateDirection(target.position, spawnProyectil.position));
                         disparos++;
                         shooting = false;
                     }

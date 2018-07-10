@@ -1289,6 +1289,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 188b4d1a74f69584795b5d93d53c3598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tipoPuerta: 1
   vel: 5
   maxAlto: 6
   maxBajo: 0
+  opened: 0
+  block: 0

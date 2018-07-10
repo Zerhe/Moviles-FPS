@@ -10,7 +10,7 @@ public class Mago : MonoBehaviour
     private NavMeshAgent agent;
     private MagoDisparar attack;
     private LookAtPlayer lookPlayer;
-    private Transform playerT;
+    private Transform target;
     [SerializeField]
     private Transform magoEyesT;
     private RaycastHit infColi;
@@ -25,7 +25,7 @@ public class Mago : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         attack = GetComponent<MagoDisparar>();
         lookPlayer = GetComponent<LookAtPlayer>();
-        playerT = GameObject.FindGameObjectWithTag("PlayerCuerpo").transform;
+        target = GameObject.FindGameObjectWithTag("TargetEnemy").transform;
     }
     private void Start()
     {
@@ -53,7 +53,6 @@ public class Mago : MonoBehaviour
         else
             anim.SetBool("Attack", false);
 
-            Debug.DrawLine(magoEyesT.position, playerT.position, Color.blue);
 
     }
     public bool GetStill()
@@ -65,10 +64,11 @@ public class Mago : MonoBehaviour
         int layerMask = 1 << 2;
         layerMask = ~layerMask;
 
-        if (Physics.Linecast(magoEyesT.position, playerT.position, out infColi, layerMask))
+        if (Physics.Linecast(magoEyesT.position, target.position, out infColi, layerMask))
         {
             if (infColi.collider.gameObject.tag == "PlayerCuerpo")
             {
+                Debug.DrawLine(magoEyesT.position, target.position, Color.blue);
                 return true;
             }
         }

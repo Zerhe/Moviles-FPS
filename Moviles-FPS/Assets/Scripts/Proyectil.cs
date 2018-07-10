@@ -28,9 +28,9 @@ public class Proyectil : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
-    public void AddVelocity()
+    public void AddVelocity(Vector3 direccion)
     {
-        rgb.AddRelativeForce(Vector3.forward * vel, ForceMode.VelocityChange);
+        rgb.AddForce(direccion * vel, ForceMode.VelocityChange);
     }
     public float GetDanio()
     {
@@ -39,7 +39,7 @@ public class Proyectil : MonoBehaviour
     protected void OnEnable()
     {
         rgb.Sleep();
-        AddVelocity();
+        //AddVelocity();
     }
     public void OnDisable()
     {
