@@ -11,16 +11,13 @@ public class MagoDisparar : MonoBehaviour
     [SerializeField]
     private Transform target;
     private float timer = 0;
-    private float timer2 = 0;
     [SerializeField]
     private float timeToShot;
     [SerializeField]
-    private float timeBetweenShot;
     private float disparos = 0;
     [SerializeField]
     private float maxDisparos;
     private bool disparar = true;
-    private bool shooting = true;
     private Mago mago;
 
     void Awake()
@@ -32,28 +29,13 @@ public class MagoDisparar : MonoBehaviour
     void Update()
     {
         CadenciaDisparo();
+        Debug.DrawLine(spawnProyectil.position, target.position, Color.red);
     }
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.tag == "PlayerCuerpo")
-        {
-            if (mago.SeePlayer())
-            {
-                Debug.DrawLine(spawnProyectil.position, target.position, Color.red);
-
-                if (disparar && mago.GetStill())
-                {
-                    if (shooting)
-                    {
-                        GameObject objeto = poolProyectiles.GetPooledObject(spawnProyectil.position, spawnProyectil.rotation).gameObject;
-                        objeto.GetComponent<Proyectil>().AddVelocity(Direction.CalculateDirection(target.position, spawnProyectil.position));
-                        disparos++;
-                        shooting = false;
-                    }
-                }
-
-            }
-        }
+    public void Disparar()
+    {        
+        GameObject objeto = poolProyectiles.GetPooledObject(spawnProyectil.position, spawnProyectil.rotation).gameObject;
+        objeto.GetComponent<Proyectil>().AddVelocity(Direction.CalculateDirection(target.position, spawnProyectil.position));
+        disparos++;
     }
     public void CadenciaDisparo()
     {
@@ -70,15 +52,6 @@ public class MagoDisparar : MonoBehaviour
         {
             timer -= timer;
             disparar = true;
-        }
-        if (disparar && !shooting)
-        {
-            timer2 += Time.deltaTime;
-        }
-        if (timer2 > timeBetweenShot)
-        {
-            timer2 -= timer2;
-            shooting = true;
         }
     }
     public bool GetDisparar()

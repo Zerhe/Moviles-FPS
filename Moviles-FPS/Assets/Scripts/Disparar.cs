@@ -23,7 +23,12 @@ public class Disparar : MonoBehaviour {
     private float costoDisparo;
     [SerializeField]
     private float waitTimeShoot;
+    private AudioManager audioManager;
 
+    private void Awake()
+    {
+        audioManager = GetComponent<AudioManager>();
+    }
     void Start ()
     {
         dispararButton = "Disparar";
@@ -38,6 +43,7 @@ public class Disparar : MonoBehaviour {
         {
             GameObject objeto = _poolProyectiles.GetPooledObject(_spawnTransform.position, _spawnTransform.rotation).gameObject;
             objeto.GetComponent<Proyectil>().AddVelocity(Direction.CalculateDirection(target.position, _spawnTransform.position));
+            audioManager.PlayShoot();
             statsP.RestarMana(costoDisparo);
             disparar = false;
         }

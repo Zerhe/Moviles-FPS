@@ -19,18 +19,26 @@ public class Scene : MonoBehaviour {
     {
         if (Input.GetButtonDown("Cancel") && !pause)
         {
-            pause = true;
-            panelPausa.SetActive(true);
-            Time.timeScale = 0;
-            Cursor.visible = true;
+            PauseGame();
         }
         else if (Input.GetButtonDown("Cancel") && pause)
         {
-            pause = false;
-            panelPausa.SetActive(false);
-            Time.timeScale = 1;
-            Cursor.visible = false;
+            ResumeGame();
         }
+    }
+    public void PauseGame()
+    {
+        pause = true;
+        panelPausa.SetActive(true);
+        Time.timeScale = 0;
+        Cursor.visible = true;
+    }
+    public void ResumeGame()
+    {
+        pause = false;
+        panelPausa.SetActive(false);
+        Time.timeScale = 1;
+        Cursor.visible = false;
     }
     public void ChangeScene(string nameScene)
     {
