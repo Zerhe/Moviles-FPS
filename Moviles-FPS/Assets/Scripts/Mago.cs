@@ -78,8 +78,14 @@ public class Mago : MonoBehaviour
     {
         if (collision.gameObject.tag == "Proyectil")
         {
-            float danio = collision.gameObject.GetComponent<Proyectil>().GetDanio();
-            vida.RecibirDanio(danio);
+            float damage = collision.gameObject.GetComponent<Proyectil>().GetDanio();
+            string damageAttribute = collision.gameObject.GetComponent<Attribute>().GetAttribute();
+            vida.RecibirDanio(damage, damageAttribute);
+            if (agent.isStopped)
+            {
+                lookPlayer.enabled = true;
+                agent.isStopped = false;
+            }
         }
     }
     private void OnTriggerEnter(Collider other)

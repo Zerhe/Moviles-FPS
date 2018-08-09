@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class MagoDisparar : MonoBehaviour
 {
-
+    [SerializeField]
+    private string namePool;
     private Pool poolProyectiles;
     [SerializeField]
     private Transform spawnProyectil;
-    [SerializeField]
     private Transform target;
     private float timer = 0;
     [SerializeField]
     private float timeToShot;
-    [SerializeField]
     private float disparos = 0;
     [SerializeField]
     private float maxDisparos;
@@ -23,7 +22,7 @@ public class MagoDisparar : MonoBehaviour
     void Awake()
     {
         target = GameObject.FindGameObjectWithTag("TargetEnemy").transform;
-        poolProyectiles = GameObject.Find("PoolBolasHielo").GetComponent<Pool>();
+        poolProyectiles = GameObject.Find(namePool).GetComponent<Pool>();
         mago = GetComponent<Mago>();
     }
     void Update()
@@ -31,7 +30,7 @@ public class MagoDisparar : MonoBehaviour
         CadenciaDisparo();
         Debug.DrawLine(spawnProyectil.position, target.position, Color.red);
     }
-    public void Disparar()
+    public void Disparar() //usada en evento de animacion
     {        
         GameObject objeto = poolProyectiles.GetPooledObject(spawnProyectil.position, spawnProyectil.rotation).gameObject;
         objeto.GetComponent<Proyectil>().AddVelocity(Direction.CalculateDirection(target.position, spawnProyectil.position));

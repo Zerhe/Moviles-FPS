@@ -21,8 +21,10 @@ public class RotPlayer : MonoBehaviour
     {
         rotXButton = "MouseX";
         rotYButton = "MouseY";
-
         character = this.transform.parent.gameObject;
+#if UNITY_ANDROID
+        sensitivity = 0.3f;
+#endif
     }
 
     void FixedUpdate()

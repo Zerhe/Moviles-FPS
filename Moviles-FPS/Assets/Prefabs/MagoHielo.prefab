@@ -372,18 +372,19 @@ GameObject:
   m_Component:
   - component: {fileID: 400048}
   - component: {fileID: 9500000}
+  - component: {fileID: 195243962338001334}
+  - component: {fileID: 136233486696069832}
+  - component: {fileID: 135099684603894774}
+  - component: {fileID: 54415054504071532}
   - component: {fileID: 114594021744424044}
   - component: {fileID: 114638789669189546}
   - component: {fileID: 114956720197109780}
   - component: {fileID: 114613858944471500}
   - component: {fileID: 114470874128185378}
   - component: {fileID: 114574117060219866}
-  - component: {fileID: 195243962338001334}
-  - component: {fileID: 136233486696069832}
-  - component: {fileID: 54415054504071532}
-  - component: {fileID: 135099684603894774}
   - component: {fileID: 82543002870357066}
   - component: {fileID: 114906975616604436}
+  - component: {fileID: 114137000973157232}
   m_Layer: 2
   m_Name: MagoHielo
   m_TagString: Enemy
@@ -1149,6 +1150,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &114137000973157232
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08bda37c9c260c8408d98cbebdc7a54a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attribute: Hielo
 --- !u!114 &114470874128185378
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1204,10 +1217,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 942eaa6eddad33443953205b7d31e56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  namePool: PoolBolasHielo
   spawnProyectil: {fileID: 4116804918618778}
-  target: {fileID: 0}
   timeToShot: 2
-  disparos: 0
   maxDisparos: 3
 --- !u!114 &114638789669189546
 MonoBehaviour:
@@ -1232,8 +1244,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14d572470e5a85549a2bdd74f8b05180, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shoot: {fileID: 8300000, guid: 8c2577f2ccb59c84d95bf9eac88ddc04, type: 3}
-  volShoot: 1
+  audio01: {fileID: 8300000, guid: 8c2577f2ccb59c84d95bf9eac88ddc04, type: 3}
+  audio02: {fileID: 0}
+  audio03: {fileID: 0}
+  audio04: {fileID: 0}
+  audio05: {fileID: 0}
+  volAudio: 2
 --- !u!114 &114956720197109780
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1246,8 +1262,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   barraVidaT: {fileID: 4231920535768124}
-  cantVida: 40
-  maxVida: 40
+  cantVida: 80
+  maxVida: 80
 --- !u!135 &135099684603894774
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -8,12 +8,14 @@ public class VidaEnemy : MonoBehaviour
     private Transform barraVidaT;
     private Vector3 scaleVida;
     private Animator anim;
+    private Attribute attribute;
     public float cantVida;
     public float maxVida;
 
     private void Awake()
     {
         anim = GetComponent<Animator>();
+        attribute = GetComponent<Attribute>();
     }
     void Start()
     {
@@ -31,11 +33,11 @@ public class VidaEnemy : MonoBehaviour
             anim.SetBool("Die", true);
         }
     }
-    public void RecibirDanio(float danio)
+    public void RecibirDanio(float damage, string damageAttribute)
     {
-        cantVida -= danio;
+        cantVida -= attribute.CalculateDamage(damage, damageAttribute);
     }
-    public void Die()
+    public void Die() //usada en evento de animacion
     {
         cantVida = maxVida;
         anim.SetBool("Die", false);

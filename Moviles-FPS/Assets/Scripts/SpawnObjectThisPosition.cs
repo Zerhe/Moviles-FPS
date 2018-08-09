@@ -9,7 +9,7 @@ public class SpawnObjectThisPosition : MonoBehaviour {
 
 	void Start ()
     {
-        poolObjects.GetPooledObject(transform.position, transform.rotation);
+        GameObject objeto = poolObjects.GetPooledObject(transform.position, transform.rotation).gameObject;
     }
 
 }

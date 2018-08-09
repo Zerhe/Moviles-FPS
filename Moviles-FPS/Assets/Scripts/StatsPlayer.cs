@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class StatsPlayer : MonoBehaviour
 {
+    private Attribute attribute;
     [SerializeField]
     private float maxVida;
     private float vida;
@@ -37,6 +38,10 @@ public class StatsPlayer : MonoBehaviour
     private bool regeManaTimer = true;
     private bool breakRegeMana = false;
 
+    private void Awake()
+    {
+        attribute = GetComponent<Attribute>();
+    }
     private void Start()
     {
         vida = maxVida;
@@ -94,13 +99,14 @@ public class StatsPlayer : MonoBehaviour
     {
         goldKeys += cant;
     }
-    public void RecibirDanio(float danio)
+    public void RecibirDanio(float damage, string damageAttribute)
     {
+        float finalDamage = attribute.CalculateDamage(damage, damageAttribute);
         if (escudo.activeInHierarchy)
-            RestarMana(danio * 2);
+            RestarMana(finalDamage * 2);
         else
-            vida -= danio;
-
+            vida -= finalDamage;
+        print(attribute.GetAttribute());
     }
     public void RestarMana(float cant)
     {
@@ -134,9 +140,10 @@ public class StatsPlayer : MonoBehaviour
     {
         if (collision.gameObject.tag == "Proyectil")
         {
-            print("MeDañaron");
-            float danio = collision.gameObject.GetComponent<Proyectil>().GetDanio();
-            RecibirDanio(danio);
+            //print("MeDañaron");
+            float damage = collision.gameObject.GetComponent<Proyectil>().GetDanio();
+            string damageAttribute = collision.gameObject.GetComponent<Attribute>().GetAttribute();
+            RecibirDanio(damage, damageAttribute);
 
         }
     }

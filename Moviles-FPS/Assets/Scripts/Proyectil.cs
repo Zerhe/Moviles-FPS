@@ -10,18 +10,17 @@ public class Proyectil : MonoBehaviour
     private float danio;
     private float timer = 0;
     [SerializeField]
-    private float timeAlive;
+    private float range;
     private Rigidbody rgb;
 
     protected void Awake()
     {
         rgb = GetComponent<Rigidbody>();
-        danio = 10;
     }
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer > timeAlive)
+        if (timer > range)
             gameObject.SetActive(false);
     }
     void OnCollisionEnter(Collision coll)
@@ -39,7 +38,6 @@ public class Proyectil : MonoBehaviour
     protected void OnEnable()
     {
         rgb.Sleep();
-        //AddVelocity();
     }
     public void OnDisable()
     {

@@ -11,7 +11,7 @@ public class Disparar : MonoBehaviour {
     [SerializeField]
     private Transform target;
     [SerializeField]
-    private StatsPlayer statsP;
+    private StatsPlayer statsPlayer;
     private string dispararButton;
     private bool disparar;
     private float timerDisparo;
@@ -20,9 +20,9 @@ public class Disparar : MonoBehaviour {
     [SerializeField]
     private GameObject escudo;
     [SerializeField]
-    private float costoDisparo;
+    private float cadence;
     [SerializeField]
-    private float waitTimeShoot;
+    private float costoMana;
     private AudioManager audioManager;
 
     private void Awake()
@@ -39,12 +39,12 @@ public class Disparar : MonoBehaviour {
         Debug.DrawLine(_spawnTransform.position, target.position, Color.green);
 #if UNITY_STANDALONE_WIN
 
-        if (Input.GetButtonDown(dispararButton) && disparar && statsP.GetMana() > 10 && !escudo.activeInHierarchy)
+        if (Input.GetButtonDown(dispararButton) && disparar && statsPlayer.GetMana() > 10 && !escudo.activeInHierarchy)
         {
             GameObject objeto = _poolProyectiles.GetPooledObject(_spawnTransform.position, _spawnTransform.rotation).gameObject;
             objeto.GetComponent<Proyectil>().AddVelocity(Direction.CalculateDirection(target.position, _spawnTransform.position));
-            audioManager.PlayShoot();
-            statsP.RestarMana(costoDisparo);
+            audioManager.PlayAudio();
+            statsPlayer.RestarMana(costoMana);
             disparar = false;
         }
 #endif
@@ -54,7 +54,8 @@ public class Disparar : MonoBehaviour {
         {
             GameObject objeto = _poolProyectiles.GetPooledObject(_spawnTransform.position, _spawnTransform.rotation).gameObject;
             objeto.GetComponent<Proyectil>().AddVelocity(Direction.CalculateDirection(target.position, _spawnTransform.position));
-            statsP.RestarMana(costoDisparo);
+            audioManager.PlayAudio();
+            statsP.RestarMana(objeto.GetComponent<Proyectil>().GetCosto());
             disparar = false;
         }
 #endif
@@ -63,7 +64,7 @@ public class Disparar : MonoBehaviour {
         {
             timerDisparo += Time.deltaTime;
         }
-        if (timerDisparo > waitTimeShoot)
+        if (timerDisparo > cadence)
         {
             disparar = true;
             timerDisparo -= timerDisparo;

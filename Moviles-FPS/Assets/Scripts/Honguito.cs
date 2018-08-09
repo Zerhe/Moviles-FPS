@@ -5,12 +5,11 @@ using UnityEngine;
 public class Honguito : MonoBehaviour
 {
     [SerializeField]
-    float ataque;
-    float timer = 0;
-    float TiempoAtacar = 0.8f;
-    VidaEnemy vida;
-    Animator anim;
-    StatsPlayer statsP;
+    private float ataque;
+    private bool collPlayer = false;
+    private VidaEnemy vida;
+    private Animator anim;
+    private StatsPlayer statsP;
 
     private void Awake()
     {
@@ -19,40 +18,47 @@ public class Honguito : MonoBehaviour
         statsP = GameObject.FindGameObjectWithTag("PlayerCuerpo").GetComponent<StatsPlayer>();
     }
     private void Update()
-    {     
-        if (timer > TiempoAtacar)
+    {
+
+    }
+    public void DamagePlayer()
+    {
+        if (collPlayer)
         {
-            statsP.RecibirDanio(ataque);
-            timer -= timer;
+            string attribute = GetComponent<Attribute>().GetAttribute();
+            print(attribute);
+            statsP.RecibirDanio(ataque, attribute);
         }
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Proyectil")
         {
-            print("MeDañaron");
-            float danio = other.gameObject.GetComponent<Proyectil>().GetDanio();
-            vida.RecibirDanio(danio);
+            //print("MeDañaron");
+            float damage = other.gameObject.GetComponent<Proyectil>().GetDanio();
+            string damageAttribute = other.gameObject.GetComponent<Attribute>().GetAttribute();
+            vida.RecibirDanio(damage, damageAttribute);
         }
         if (other.gameObject.tag == "Player")
         {
-            timer -= timer;
-            anim.SetBool("Atacar", true);
+            collPlayer = true;
+            anim.SetBool("Attack", true);
         }
     }
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-            timer += Time.deltaTime;
+
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-            anim.SetBool("Atacar", false);
+            collPlayer = false;
+            anim.SetBool("Attack", false);
         }
     }
-    
+
 }

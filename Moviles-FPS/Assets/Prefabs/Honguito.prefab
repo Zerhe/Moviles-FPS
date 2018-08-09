@@ -82,16 +82,18 @@ GameObject:
   m_Component:
   - component: {fileID: 4873909600520324}
   - component: {fileID: 95515750426524200}
+  - component: {fileID: 195884397521125026}
+  - component: {fileID: 135837897645025112}
+  - component: {fileID: 54617752538052224}
   - component: {fileID: 114092744227164756}
   - component: {fileID: 114539510494139148}
   - component: {fileID: 114112019266730012}
   - component: {fileID: 114766343701198880}
-  - component: {fileID: 195884397521125026}
-  - component: {fileID: 135837897645025112}
-  - component: {fileID: 54617752538052224}
+  - component: {fileID: 114838178880411456}
+  - component: {fileID: 114090833681153242}
   m_Layer: 2
   m_Name: Honguito
-  m_TagString: Honguito
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -344,6 +346,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114090833681153242
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1606722151889996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb093267ee54c6142819e17e6bbbf67e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114092744227164756
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -367,8 +380,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   barraVidaT: {fileID: 4042438668644246}
-  cantVida: 30
-  maxVida: 30
+  cantVida: 40
+  maxVida: 40
 --- !u!114 &114539510494139148
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -392,6 +405,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fccf757ac7945b24ab24f97c7a53b1d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114838178880411456
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1606722151889996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08bda37c9c260c8408d98cbebdc7a54a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attribute: Viento
 --- !u!114 &114963010677616830
 MonoBehaviour:
   m_ObjectHideFlags: 1
