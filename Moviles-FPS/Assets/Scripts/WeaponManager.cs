@@ -53,6 +53,12 @@ public class WeaponManager : MonoBehaviour
         }
 #endif
     }
+    public void ChangeWeapon(int num)
+    {
+        DesactiveWeapons();
+        weapons[num].SetActive(true);
+        playerAttribute.SetAttribute(weapons[num].GetComponent<Attribute>().GetAttribute());
+    }
     public void DesactiveWeapons()
     {
         for (int i = 0; i < weapons.Length; i++)
