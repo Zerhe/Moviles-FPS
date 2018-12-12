@@ -50,12 +50,12 @@ public class Disparar : MonoBehaviour {
 #endif
 #if UNITY_ANDROID
 
-        if (shootJoyButton.GetPressed() && disparar && statsP.GetMana() > 10 && !escudo.activeInHierarchy)
+        if (shootJoyButton.GetPressed() && disparar && statsPlayer.GetMana() > 10 && !escudo.activeInHierarchy)
         {
             GameObject objeto = _poolProyectiles.GetPooledObject(_spawnTransform.position, _spawnTransform.rotation).gameObject;
             objeto.GetComponent<Proyectil>().AddVelocity(Direction.CalculateDirection(target.position, _spawnTransform.position));
             audioManager.PlayAudio();
-            statsP.RestarMana(objeto.GetComponent<Proyectil>().GetCosto());
+            statsPlayer.RestarMana(costoMana);
             disparar = false;
         }
 #endif
