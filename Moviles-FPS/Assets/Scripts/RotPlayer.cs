@@ -23,7 +23,7 @@ public class RotPlayer : MonoBehaviour
         rotYButton = "MouseY";
         character = this.transform.parent.gameObject;
 #if UNITY_ANDROID
-        sensitivity = 0.3f;
+        sensitivity = 1f;
 #endif
     }
 
