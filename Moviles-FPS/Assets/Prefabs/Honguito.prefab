@@ -50,9 +50,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4281209160022846}
   - component: {fileID: 137815239377540394}
-  m_Layer: 2
+  - component: {fileID: 65881473986030092}
+  m_Layer: 0
   m_Name: MushroomMon
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -291,7 +292,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1606722151889996}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -42.98108, y: 0, z: -299.7953}
+  m_LocalPosition: {x: -43.07599, y: 11.632144, z: -348.09793}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children:
   - {fileID: 4932434641308212}
@@ -329,6 +330,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!65 &65881473986030092
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1416149731781148}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.2338805, y: 4.697736, z: 4.690167}
+  m_Center: {x: 0, y: -0.07043422, z: 2.339166}
 --- !u!95 &95515750426524200
 Animator:
   serializedVersion: 3
@@ -393,7 +406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 928ccd4d20c691844be456a064464b5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ataque: 20
+  ataque: 3
 --- !u!114 &114766343701198880
 MonoBehaviour:
   m_ObjectHideFlags: 1

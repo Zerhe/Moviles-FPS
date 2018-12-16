@@ -36,10 +36,12 @@ public class IncreaseStats : MonoBehaviour
                     break;
                 case 2:
                     statsPlayer.SumMaxVida(valueIncrease);
+                    statsPlayer.SumVida(valueIncrease);
                     gameObject.SetActive(false);
                     break;
                 default:
                     statsPlayer.SumMaxMana(valueIncrease);
+                    statsPlayer.SumMana(valueIncrease);
                     gameObject.SetActive(false);
                     break;
             }

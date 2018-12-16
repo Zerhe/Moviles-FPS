@@ -24,6 +24,8 @@ public class Disparar : MonoBehaviour {
     [SerializeField]
     private float costoMana;
     private AudioManager audioManager;
+    private RaycastHit infColi;
+
 
     private void Awake()
     {
@@ -50,7 +52,7 @@ public class Disparar : MonoBehaviour {
 #endif
 #if UNITY_ANDROID
 
-        if (shootJoyButton.GetPressed() && disparar && statsPlayer.GetMana() > 10 && !escudo.activeInHierarchy)
+        if (SeeEnemy() && disparar && statsPlayer.GetMana() > 10 && !escudo.activeInHierarchy)
         {
             GameObject objeto = _poolProyectiles.GetPooledObject(_spawnTransform.position, _spawnTransform.rotation).gameObject;
             objeto.GetComponent<Proyectil>().AddVelocity(Direction.CalculateDirection(target.position, _spawnTransform.position));
@@ -69,5 +71,20 @@ public class Disparar : MonoBehaviour {
             disparar = true;
             timerDisparo -= timerDisparo;
         }
+    }
+    public bool SeeEnemy()
+    {
+        int layerMask = 1 << 2;
+        layerMask = ~layerMask;
+
+        if (Physics.Linecast(_spawnTransform.position, target.position, out infColi, layerMask))
+        {
+            if (infColi.collider.gameObject.tag == "Enemy")
+            {
+                Debug.DrawLine(_spawnTransform.position, target.position, Color.green);
+                return true;
+            }
+        }
+        return false;
     }
 }
