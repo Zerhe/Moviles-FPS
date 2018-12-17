@@ -38,11 +38,11 @@ public class Swipear : MonoBehaviour {
             //    return;
             //}
 
-            if(touch.phase == TouchPhase.Began)
+            if(touch.phase == TouchPhase.Began && touch.position.x > Screen.width/2)
             {
                 initTouch = touch;
             }
-            else if(touch.phase == TouchPhase.Moved)
+            else if(touch.phase == TouchPhase.Moved && touch.position.x > Screen.width / 2)
             {
                 if(swipe)
                 {
@@ -55,7 +55,7 @@ public class Swipear : MonoBehaviour {
                     character.transform.eulerAngles = new Vector3(0f, rotY, 0f);
                 }
             }
-            else if (touch.phase == TouchPhase.Ended)
+            else if (touch.phase == TouchPhase.Ended && touch.position.x > Screen.width / 2)
             {
                 initTouch = new Touch();
             }
